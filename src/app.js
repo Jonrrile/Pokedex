@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const container = document.getElementById("app");
-const pokemons = 151;
+const pokemons = 200;
 const fetchData = () => {
     for (let i = 1; i <= pokemons; i++) {
         getPokemon(i);
@@ -25,7 +25,8 @@ const getPokemon = (id) => __awaiter(void 0, void 0, void 0, function* () {
         id: pokemon.id,
         name: pokemon.name,
         image: `${pokemon.sprites.front_default}`,
-        type: pokemonType
+        type: pokemonType,
+        moves: `${pokemon.moves[0].move.name}`
     };
     showPokemon(transformedPokemon);
 });
@@ -36,6 +37,7 @@ const showPokemon = (pokemon) => {
             <img class="card--image" src=${pokemon.image} alt=${pokemon.name} />
             <h1 class="card--name">${pokemon.name}</h1>
             <span class="card--details">${pokemon.type}</span>
+            <span class ="card--details">${pokemon.moves}</span>
         </div>
     `;
     container.innerHTML += output;

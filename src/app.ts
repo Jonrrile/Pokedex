@@ -1,11 +1,12 @@
 const container: HTMLElement | any = document.getElementById("app");
-const pokemons: number = 151;
+const pokemons: number = 200;
 
 interface IPokemon {
     id: number;
     name: string;
     image: string;
     type: string;
+    moves: string;
 }
 
 const fetchData = (): void => {
@@ -25,7 +26,8 @@ const getPokemon = async (id: number): Promise<void> => {
         id: pokemon.id,
         name: pokemon.name,
         image: `${pokemon.sprites.front_default}`,
-        type: pokemonType
+        type: pokemonType,
+        moves: `${pokemon.moves[0].move.name}`
     };
 
     showPokemon(transformedPokemon);
@@ -38,6 +40,7 @@ const showPokemon = (pokemon: IPokemon): void => {
             <img class="card--image" src=${pokemon.image} alt=${pokemon.name} />
             <h1 class="card--name">${pokemon.name}</h1>
             <span class="card--details">${pokemon.type}</span>
+            <span class ="card--details">${pokemon.moves}</span>
         </div>
     `;
     container.innerHTML += output;
